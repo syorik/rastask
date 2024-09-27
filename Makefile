@@ -1,29 +1,18 @@
-# Makefile for Personal Manager App
+# Flutter Makefile for desktop development
 
-# Python interpreter
-PYTHON = python3
+# Build for Windows
+build-windows:
+	flutter build windows
 
-# Main application file
-MAIN = main.py
+# Build for Linux using Nix shell
+build-linux:
+	nix-shell --run "flutter build linux"
 
-# Run the application
-run:
-	$(PYTHON) $(MAIN)
-
-# Install dependencies
-install:
-	pip install tkinter customtkinter
-
-# Install using pipx
-pipx-install:
-	pipx install tkinter customtkinter
-
-# Clean up generated files
-clean:
-	find . -type f -name '*.pyc' -delete
-	find . -type d -name '__pycache__' -delete
+# Run in development mode
+run-dev:
+	flutter run -d desktop
 
 # Default target
-.DEFAULT_GOAL := run
+all: build-windows build-linux
 
-.PHONY: run install pipx-install clean
+.PHONY: build-windows build-linux run-dev all
