@@ -1,21 +1,9 @@
-# Makefile for building and running rasptask
+.PHONY: build run
 
-# Go compiler
-GO := go
-
-# Binary name
-BINARY_NAME := rasptask
-
-# Build command
 build:
-	$(GO) build -o ./bin/$(BINARY_NAME) cmd/rastask.go
+	wails build
 
-# Run command
-run:
-	$(GO) run cmd/rastask.go
+run: build
+	./build/bin/rastask
 
-# Clean command
-clean:
-	rm -f ./bin/$(BINARY_NAME)
-
-.PHONY: build run clean
+default: run
