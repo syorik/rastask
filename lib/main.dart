@@ -8,7 +8,6 @@ void main() async {
 
   WindowOptions windowOptions = const WindowOptions(
     size: Size(1024, 600),
-    fullScreen: true,
     backgroundColor: Colors.transparent,
     skipTaskbar: true,
     titleBarStyle: TitleBarStyle.hidden,
