@@ -8,19 +8,18 @@ void main() async {
 
   WindowOptions windowOptions = const WindowOptions(
     size: Size(1024, 600),
-    center: true,
+    fullScreen: true,
     backgroundColor: Colors.transparent,
-    skipTaskbar: false,
+    skipTaskbar: true,
     titleBarStyle: TitleBarStyle.hidden,
   );
 
   await windowManager.waitUntilReadyToShow(windowOptions, () async {
     await windowManager.show();
     await windowManager.focus();
+    await windowManager.setFullScreen(true);
   });
 
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-  SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
   runApp(const MyApp());
 }
 
