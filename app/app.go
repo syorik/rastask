@@ -58,9 +58,14 @@ func NewApp() *App {
 	a := &App{
 		fyneApp: app.New(),
 	}
-	a.fyneApp.Settings().SetTheme(theme.DefaultTheme())
+	a.fyneApp.Settings().SetTheme(theme.DarkTheme())
 	a.window = a.fyneApp.NewWindow("Rasptask")
-	a.window.Resize(fyne.NewSize(1024, 600))
+	a.window.SetFullScreen(true)
+	a.window.Canvas().SetOnTypedKey(func(k *fyne.KeyEvent) {
+		if k.Name == fyne.KeyEscape {
+			a.fyneApp.Quit()
+		}
+	})
 	return a
 }
 
