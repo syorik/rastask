@@ -1,0 +1,3 @@
+# Binary output directory
+/bin/*
+!/bin/.gitkeep
