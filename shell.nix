@@ -16,6 +16,7 @@ pkgs.mkShell {
     xorg.libXcursor
     xorg.libXrandr
     xorg.libXi
+    git
   ];
 
   shellHook = ''
