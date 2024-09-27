@@ -3,23 +3,19 @@
 # Go compiler
 GO := go
 
-# Binary output directory
-BIN_DIR := ./bin
-
 # Binary name
 BINARY_NAME := rasptask
 
-# Build target
-$(BIN_DIR)/$(BINARY_NAME): cmd/rastask.go
-	@mkdir -p $(BIN_DIR)
-	$(GO) build -o $(BIN_DIR)/$(BINARY_NAME) cmd/rastask.go
+# Build command
+build:
+	$(GO) build -o ./bin/$(BINARY_NAME) cmd/rastask.go
 
-# Run target
-run: $(BIN_DIR)/$(BINARY_NAME)
-	$(BIN_DIR)/$(BINARY_NAME)
+# Run command
+run:
+	$(GO) run cmd/rastask.go
 
-# Clean target
+# Clean command
 clean:
-	rm -rf $(BIN_DIR)
+	rm -f ./bin/$(BINARY_NAME)
 
-.PHONY: run clean
+.PHONY: build run clean
