@@ -14,6 +14,10 @@ run:
 install:
 	pip install tkinter customtkinter
 
+# Install using pipx
+pipx-install:
+	pipx install tkinter customtkinter
+
 # Clean up generated files
 clean:
 	find . -type f -name '*.pyc' -delete
@@ -22,4 +26,4 @@ clean:
 # Default target
 .DEFAULT_GOAL := run
 
-.PHONY: run install clean
+.PHONY: run install pipx-install clean
