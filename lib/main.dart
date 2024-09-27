@@ -15,8 +15,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'TaskPi',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      theme: ThemeData.dark().copyWith(
+        colorScheme: ColorScheme.dark(
+          primary: Colors.deepPurple,
+          secondary: Colors.deepPurpleAccent,
+        ),
         useMaterial3: true,
       ),
       home: const MyHomePage(),
@@ -47,6 +50,39 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         body: Row(
           children: [
+            NavigationRail(
+              extended: true,
+              backgroundColor: Theme.of(context).colorScheme.background,
+              selectedIndex: _selectedIndex,
+              onDestinationSelected: (int index) {
+                setState(() {
+                  _selectedIndex = index;
+                });
+              },
+              minWidth: 120,
+              destinations: const [
+                NavigationRailDestination(
+                  icon: Icon(Icons.home_outlined, size: 32),
+                  selectedIcon: Icon(Icons.home, size: 32),
+                  label: Text('Home', style: TextStyle(fontSize: 18)),
+                ),
+                NavigationRailDestination(
+                  icon: Icon(Icons.list_outlined, size: 32),
+                  selectedIcon: Icon(Icons.list, size: 32),
+                  label: Text('Tasks', style: TextStyle(fontSize: 18)),
+                ),
+                NavigationRailDestination(
+                  icon: Icon(Icons.calendar_today_outlined, size: 32),
+                  selectedIcon: Icon(Icons.calendar_today, size: 32),
+                  label: Text('Calendar', style: TextStyle(fontSize: 18)),
+                ),
+                NavigationRailDestination(
+                  icon: Icon(Icons.settings_outlined, size: 32),
+                  selectedIcon: Icon(Icons.settings, size: 32),
+                  label: Text('Settings', style: TextStyle(fontSize: 18)),
+                ),
+              ],
+            ),
             Expanded(
               child: Container(
                 color: Theme.of(context).colorScheme.background,
@@ -57,38 +93,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-            ),
-            NavigationRail(
-              extended: true,
-              backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-              selectedIndex: _selectedIndex,
-              onDestinationSelected: (int index) {
-                setState(() {
-                  _selectedIndex = index;
-                });
-              },
-              destinations: const [
-                NavigationRailDestination(
-                  icon: Icon(Icons.home_outlined),
-                  selectedIcon: Icon(Icons.home),
-                  label: Text('Home'),
-                ),
-                NavigationRailDestination(
-                  icon: Icon(Icons.list_outlined),
-                  selectedIcon: Icon(Icons.list),
-                  label: Text('Tasks'),
-                ),
-                NavigationRailDestination(
-                  icon: Icon(Icons.calendar_today_outlined),
-                  selectedIcon: Icon(Icons.calendar_today),
-                  label: Text('Calendar'),
-                ),
-                NavigationRailDestination(
-                  icon: Icon(Icons.settings_outlined),
-                  selectedIcon: Icon(Icons.settings),
-                  label: Text('Settings'),
-                ),
-              ],
             ),
           ],
         ),
